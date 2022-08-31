@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 app.get("/getData", function (req, res) {
 	console.log("sending datafile...")
 
-	for (let i=0; i<1000; i++) {
+	for (let i=0; i<100; i++) {
 
 		let currFeatureObj = dataFile.features[i]
 
