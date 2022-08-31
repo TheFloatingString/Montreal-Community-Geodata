@@ -11,9 +11,9 @@ npm install
 ### To Run
 
 ```
-node app.js
+node server.js
 ```
 
-Go to localhost port 3000
+Go to localhost port 8080
 
-Try `http://localhost:3000`
+Try `http://localhost:8080`
