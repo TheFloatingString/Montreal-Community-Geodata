@@ -1,0 +1,23 @@
+{
+  "name": "montreal-community-geodata",
+  "version": "1.0.0",
+  "description": "Visualization of food and community services in Montreal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheFloatingString/Montreal-Community-Geodata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheFloatingString/Montreal-Community-Geodata/issues"
+  },
+  "homepage": "https://github.com/TheFloatingString/Montreal-Community-Geodata#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "leaflet": "^1.8.0"
+  }
+}
