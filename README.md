@@ -1,5 +1,7 @@
 # Montreal-Community-Geodata
 
+![Geodata screenshot](/pubilc/static/img/screenshot.png)
+
 ### Installation
 
 ```
