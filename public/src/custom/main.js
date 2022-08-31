@@ -18,9 +18,23 @@ Http.onreadystatechange=(e)=>{
         console.log(jsonVar);
 
         for (let i=0; i<jsonVar.data.length; i++) {
+            console.log(jsonVar.data[i]);
+
+            let xCoord = jsonVar.data[i].x;
+            let yCoord = jsonVar.data[i].y;
+
+            // let xCoord = 45.5;
+            // let yCoord = -73.5;
+
+            console.log(xCoord);
+            console.log(typeof xCoord);
+
+            console.log(yCoord);
+            console.log(typeof yCoord);
+
             L.marker([
-                jsonVar.data[i].x, 
-                jsonVar.data[i].y
+                yCoord, 
+                xCoord
             ]).addTo(map);
         }
 
