@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const router = express.Router();
 
-const portNum = 3000;
+const portNum = 8080;
 let newDataObj = {"data": []};
 
 app.use(express.static(__dirname+'/node_modules/leaflet/dist'));
