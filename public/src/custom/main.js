@@ -11,22 +11,22 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 Http.open("GET", url);
 Http.send()
 
+
 Http.onreadystatechange=(e)=>{
     try {
         let jsonVar = JSON.parse(Http.responseText);
-        for (let i=0; i<jsonVar.data.length; i++) {
-            console.log(jsonVar.data[i].coordinates.x);
-            console.log(jsonVar.data[i].coordinates.y);
-            console.log('');
+        console.log(jsonVar);
 
+        for (let i=0; i<jsonVar.data.length; i++) {
             L.marker([
-                jsonVar.data[i].coordinates.x,
-                jsonVar.data[i].coordinates.y
+                jsonVar.data[i].x, 
+                jsonVar.data[i].y
             ]).addTo(map);
         }
-        // console.log(jsonVar.data[0]);
+
     } catch (e) {
         console.log(e);
     }
-    
+
+    console.log("done http request");
 }
