@@ -4,7 +4,6 @@ const path = require('path');
 const router = express.Router();
 
 const portNum = 8080;
-let newDataObj = {"data": []};
 
 app.use(express.static(__dirname+'/node_modules/leaflet/dist'));
 app.use(express.static(__dirname+'/public'));
@@ -19,18 +18,20 @@ app.get('/', function (req, res) {
 
 app.get("/getData", function (req, res) {
 	console.log("sending datafile...")
+	let newDataObj = {"data": []};
 
-	for (let i=0; i<2000; i++) {
+
+	for (let i=0; i<dataFile.features.length; i++) {
 
 		let currFeatureObj = dataFile.features[i]
 
 		if (currFeatureObj.geometry !== null) {
-			console.log(currFeatureObj);
 
 			let newPoint = {
 				"x": currFeatureObj.geometry.coordinates[0],
 				"y": currFeatureObj.geometry.coordinates[1],
 				"name": currFeatureObj.properties.name,
+				"address": currFeatureObj.properties.address,
 			}
 
 			newDataObj.data.push(newPoint);
@@ -39,7 +40,6 @@ app.get("/getData", function (req, res) {
 
 	}
 
-	console.log(newDataObj);
 	res.json(newDataObj);
 })
 

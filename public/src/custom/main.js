@@ -10,13 +10,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var markers = L.markerClusterGroup();
 
-
 fetch(url).then((resp) => resp.json()).then(data => {
 
-            for (let i=0; i<data.data.length; i++){
-                console.log(data.data[i].x, data.data[i].y)
-                let marker = L.marker(new L.LatLng(data.data[i].y, data.data[i].x));
-                marker.bindPopup(data.data[i].name)
+            for (var i=0; i<data.data.length; i++){
+                var marker = L.marker(new L.LatLng(data.data[i].y, data.data[i].x));
+                marker.bindPopup('<b>'+data.data[i].name+'</b><br><br>'+data.data[i].address)
                 markers.addLayer(marker);
             }
 
