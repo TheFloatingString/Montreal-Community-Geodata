@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 app.get("/getData", function (req, res) {
 	console.log("sending datafile...")
 
-	for (let i=0; i<100; i++) {
+	for (let i=0; i<2000; i++) {
 
 		let currFeatureObj = dataFile.features[i]
 
@@ -29,7 +29,8 @@ app.get("/getData", function (req, res) {
 
 			let newPoint = {
 				"x": currFeatureObj.geometry.coordinates[0],
-				"y": currFeatureObj.geometry.coordinates[1]
+				"y": currFeatureObj.geometry.coordinates[1],
+				"name": currFeatureObj.properties.name,
 			}
 
 			newDataObj.data.push(newPoint);
