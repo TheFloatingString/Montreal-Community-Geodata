@@ -1,7 +1,6 @@
-const Http = new XMLHttpRequest();
 const url = "/getData"
 
-var map = L.map('map').setView([45.5, -73.5], 10);
+var map = L.map('map').setView([45.55, -73.6], 10.35);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
