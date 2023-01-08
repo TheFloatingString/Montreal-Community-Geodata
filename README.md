@@ -22,7 +22,7 @@ set SSL=<lowercase boolean>
 ### To Run
 
 ```
-node server.js
+npm start
 ```
 
 Go to localhost port 8080
