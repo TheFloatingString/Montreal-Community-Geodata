@@ -32,33 +32,30 @@ function addDonnesMontrealToDb(psqlPool) {
         .on('data', row => data.push(row))
         .on('end', () => {
 
+            let counter = 0;
 
             for (let i=0; i<data.length; i++) {
-                if (i<65) {
-                    try {
-                        console.log(data[i]);
-                        // console.log(data[i].name);
-                        console.log(`adding ${i}`);
-                        addOrganization(
-                            psqlPool,
-                            data[i].name,
-                            data[i].address,
-                            data[i].city,
-                            data[i].state.split(',')[0].trim(),
-                            data[i].state.split(',')[1].trim(),
-                            data[i].type,
-                            data[i].statut,
-                            returnNullIfEmptyString(data[i].latitude),
-                            returnNullIfEmptyString(data[i].longitude),
-                            'Données Montréal'
-                        );
-                    }
-                    catch (e) {
-                        console.log(e)
-                    }
+                try {
+                    addOrganization(
+                        psqlPool,
+                        data[i].name,
+                        data[i].address,
+                        data[i].city,
+                        data[i].state.split(',')[0].trim(),
+                        data[i].state.split(',')[1].trim(),
+                        data[i].type,
+                        data[i].statut,
+                        returnNullIfEmptyString(data[i].latitude),
+                        returnNullIfEmptyString(data[i].longitude),
+                        'Données Montréal'
+                    );
+                    counter += 1;
+                }
+                catch (e) {
+                    console.log(e)
                 }
             }
-            console.log('finished loop')
+            console.log(`looped through ${counter} items in the CSV file.`)
         });
 }
 
