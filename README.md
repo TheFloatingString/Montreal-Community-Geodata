@@ -15,7 +15,7 @@ set NODE_TLS_REJECT_UNAUTHORIZED=0
 set USER=<USER>
 set HOST=<HOST>
 set PASSWORD=<PASSWORD>
-set PORT=<PORT>
+set POSTGRES_PORT=<PORT>
 set SSL=<lowercase boolean>
 ```
 
