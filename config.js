@@ -6,7 +6,7 @@ const config = {
 		host: env.HOST,
 		password: env.PASSWORD,
 		database: env.DATABASE,
-		port: env.PORT,
+		port: env.POSTGRES_PORT,
 		ssl: (env.SSL_CONFIG === 'true'),
 	}
 };
