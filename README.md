@@ -8,6 +8,17 @@
 npm install
 ```
 
+### Environment Variables
+
+```
+set NODE_TLS_REJECT_UNAUTHORIZED=0
+set USER=<USER>
+set HOST=<HOST>
+set PASSWORD=<PASSWORD>
+set PORT=<PORT>
+set SSL=<lowercase boolean>
+```
+
 ### To Run
 
 ```
