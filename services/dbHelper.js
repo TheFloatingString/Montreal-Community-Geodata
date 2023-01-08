@@ -1,25 +1,39 @@
 require('dotenv').config();
+const pgEscape = require('pg-escape');
+
+
 
 const fs = require('fs');
 const csv = require('fast-csv');
 const data = []
 
 const pg = require('pg');
-const config = require('../config')
+const config = require('../config');
+const escape = require('pg-escape');
 
 const pool = new pg.Pool(config.db);
 
 
-function removeSingleQuotes(string) {
-    return string.replace("'", "''")
+function replaceSpecialChar(string) {
+    if (string==null) {
+        return -99;
+    }
+    else {
+        // return 1;
+        // return string.replace("/", "").replace("'", "");
+        return string.replace("/", "'/").replace("'", "''");
+    }
 }
 
 function returnNullIfEmptyString(dataInput) {
-    if (dataInput.length == 0) {
-        return null
+    if (dataInput == null) {
+        return dataInput;
+    } 
+    else if (dataInput.length == 0) {
+        return null;
     }
     else {
-        return dataInput
+        return dataInput;
     }
 }
 
@@ -35,6 +49,7 @@ function addDonnesMontrealToDb(psqlPool) {
             let counter = 0;
 
             for (let i=0; i<data.length; i++) {
+            // for (let i=0; i<data.length; i++) {
                 try {
                     addOrganization(
                         psqlPool,
@@ -61,6 +76,7 @@ function addDonnesMontrealToDb(psqlPool) {
 
 addDonnesMontrealToDb(pool);
 
+
 function addOrganization(
     psqlPool,
     name,
@@ -74,30 +90,9 @@ function addOrganization(
     longitude,
     dataSource
 ) {
-    customQuery = `
-        INSERT INTO organizations(
-            name,
-            address,
-            city,
-            state,
-            country,
-            openStatus,
-            latitude,
-            longitude,
-            dataSource
-        )
-        VALUES (
-            '${removeSingleQuotes(name)}',
-            '${removeSingleQuotes(address)}',
-            '${removeSingleQuotes(city)}',
-            '${removeSingleQuotes(state)}',
-            '${removeSingleQuotes(country)}'
-            '${removeSingleQuotes(category)}',
-            '${removeSingleQuotes(openStatus)}',
-            '${removeSingleQuotes(latitude)}',
-            '${removeSingleQuotes(longitude)}',
-            '${removeSingleQuotes(dataSource)}'
-        );`
 
-    psqlPool.query(customQuery);
+    let customQuery = escape("INSERT INTO organizations(name, address, city, state, country, category, openStatus, latitude, longitude, dataSource) VALUES(%L, %L, %L, %L, %L, %L, %L, %L, %L, %L)", name, address, city, state, country, category, openStatus, latitude, longitude, dataSource);
+
+    psqlPool.query(escape(customQuery));
+
 }
