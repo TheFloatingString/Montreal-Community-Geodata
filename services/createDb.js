@@ -54,8 +54,6 @@ const printDatabase = () => {
 
     poolDb.query(printQuery);
     poolDb.end();
-
-
 }
 
 const q_init = `
@@ -104,13 +102,13 @@ VALUES (
     // console.log(err, res);
 // });
 
-const q_select = `
-SELECT * FROM organizations
-`;
+// const q_select = `
+// SELECT * FROM organizations
+// `;
 
-pool.query(q_select).then((res, err) => {
-    console.log(res.rows);
-})
+// pool.query(q_select).then((res, err) => {
+//     console.log(res.rows);
+// })
 
 // console.log(getQuery(q_select));
 

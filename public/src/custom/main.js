@@ -1,4 +1,4 @@
-const url = "/getData"
+const url = "/getPostgres"
 
 var map = L.map('map').setView([45.55, -73.6], 10.35);
 
@@ -11,9 +11,9 @@ var markers = L.markerClusterGroup();
 
 fetch(url).then((resp) => resp.json()).then(data => {
 
-            for (var i=0; i<data.data.length; i++){
-                var marker = L.marker(new L.LatLng(data.data[i].y, data.data[i].x));
-                marker.bindPopup('<b>'+data.data[i].name+'</b><br><br>'+data.data[i].address)
+            for (var i=0; i<data.length; i++){
+                var marker = L.marker(new L.LatLng(data[i].latitude, data[i].longitude));
+                marker.bindPopup('<b>'+data[i].name+'</b><br><br>'+data[i].address)
                 markers.addLayer(marker);
             }
 
