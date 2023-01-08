@@ -48,7 +48,7 @@ app.get('/getPostgres', async function (req, res) {
 	// );
 
 	let psqlRsults = await getRows(pool);
-	console.log(psqlRsults.rows);
+	// console.log(psqlRsults.rows);
 	res.json(psqlRsults.rows);
 
 
