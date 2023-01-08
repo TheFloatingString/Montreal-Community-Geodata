@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "clearDatabase": "node scripts/clearDatabase.js",
+    "printDatabase": "node scripts/printDatabase.js",
+    "addCsvToDatabase": "node scripts/addCsvToDatabase.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
     "fast-csv": "^4.3.6",
     "leaflet": "^1.8.0",
     "pg": "^8.0.3",
+    "pg-escape": "^0.2.0",
     "selenium-webdriver": "^4.7.1"
   }
 }
