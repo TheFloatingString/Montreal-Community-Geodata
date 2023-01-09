@@ -1,6 +1,6 @@
 # Montreal-Community-Geodata
 
-![Geodata screenshot](https://raw.githubusercontent.com/TheFloatingString/Montreal-Community-Geodata/master/public/static/img/screenshot.png)
+![Geodata screenshot](https://raw.githubusercontent.com/TheFloatingString/Montreal-Community-Geodata/main/public/static/img/screenshot.png)
 
 ### Installation
 
