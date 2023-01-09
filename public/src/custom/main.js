@@ -1,4 +1,4 @@
-const url = "/getPostgres"
+const url = "/getData"
 
 var map = L.map('map').setView([45.55, -73.6], 10.35);
 

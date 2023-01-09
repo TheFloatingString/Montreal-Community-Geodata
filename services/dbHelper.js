@@ -1,7 +1,9 @@
 require('dotenv').config();
+const scraperUtils = require('../services/scraperUtils')
+
+// import { scrapeAnagraph } from '../services/scraperUtils'
+
 const pgEscape = require('pg-escape');
-
-
 
 const fs = require('fs');
 const csv = require('fast-csv');
@@ -74,8 +76,39 @@ function addDonnesMontrealToDb(psqlPool) {
         });
 }
 
-addDonnesMontrealToDb(pool);
+async function addAnagraphToDb(psqlPool) {
 
+    const jsonResp = await scraperUtils.scrapeAnagraph();
+    console.log(jsonResp.features.length);
+    console.log(jsonResp.features[0]);
+
+    for (let i=0; i<jsonResp.features.length; i++) {
+        // try {
+            // console.log(i);
+            addOrganization(
+                psqlPool,
+                jsonResp.features[i].properties.name,
+                jsonResp.features[i].properties.address,
+                jsonResp.features[i].properties.district,
+                null,
+                null,
+                jsonResp.features[i].properties.categoryen,
+                null,
+                jsonResp.features[i].geometry.coordinates[1].toString(),
+                jsonResp.features[i].geometry.coordinates[0].toString(),
+                "Anagraph Foodmap"
+            )
+        // } catch (e) {
+            // console.log(`error at item ${i}`)
+            // console.log(e);
+        // }    
+    }
+
+    console.log("completed running process to upload Anagraph data points.")
+}
+
+// addDonnesMontrealToDb(pool);
+addAnagraphToDb(pool);
 
 function addOrganization(
     psqlPool,
@@ -90,6 +123,36 @@ function addOrganization(
     longitude,
     dataSource
 ) {
+
+
+    // console.log("HELLO!!!")
+    // console.log(
+    //     name,
+    //     address,
+    //     city,
+    //     state,
+    //     country,
+    //     category,
+    //     openStatus,
+    //     latitude,
+    //     longitude,
+    //     dataSource
+    // )
+
+    // console.log(psqlPool);
+
+    // console.log(escape("INSERT INTO organizations(name, address, city, state, country, category, openStatus, latitude, longitude, dataSource) VALUES(%L, %L, %L, %L, %L, %L, %L, %L, %L, %L)", name, address, city, state, country, category, openStatus, latitude, longitude, dataSource));
+
+
+    // console.log(typeof(name));
+    // console.log(escape("VALUES(%L, %L, %L)", 'my Restaurant', name, address));
+    // console.log("sandwhich bottom:")
+    // console.log(latitude);
+    // console.log(typeof(latitude));
+    // console.log(escape("VALUES(%L, %L, %L, %L, %L, %L, %L, %L)", name, address, city, state, country, category, openStatus, latitude));
+
+    // console.log(escape("VALUES(%L, %L, %L)", toString(name), toString(address), toString(city)));
+    // console.log("WOOHOO!")
 
     let customQuery = escape("INSERT INTO organizations(name, address, city, state, country, category, openStatus, latitude, longitude, dataSource) VALUES(%L, %L, %L, %L, %L, %L, %L, %L, %L, %L)", name, address, city, state, country, category, openStatus, latitude, longitude, dataSource);
 
