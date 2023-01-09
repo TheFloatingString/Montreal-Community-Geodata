@@ -80,15 +80,20 @@ async function scrapeDonneesMontreal() {
     return null;
 }
 
-scrapeDonneesMontreal();
+// scrapeDonneesMontreal();
 
 function scrape211() {
     return null;
 }
 
-function scrapeAnagraph() {
+async function scrapeAnagraph() {
 
     let driver = new Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless')).build();
+    await driver.get("https://storage.googleapis.com/foodmap-dev/communityFeatures.json");
 
-    return null;
+    const content = await driver.findElement(By.css('pre')).getText();
+
+    return JSON.parse(content);
 }
+
+exports.scrapeAnagraph = scrapeAnagraph;
