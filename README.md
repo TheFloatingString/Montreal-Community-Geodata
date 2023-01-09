@@ -19,6 +19,12 @@ set POSTGRES_PORT=<PORT>
 set SSL=<lowercase boolean>
 ```
 
+### Clear Database
+
+```
+npm clearDatabase
+```
+
 ### To Run
 
 ```
