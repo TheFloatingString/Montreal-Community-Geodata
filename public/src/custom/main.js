@@ -13,7 +13,7 @@ fetch(url).then((resp) => resp.json()).then(data => {
 
             for (var i=0; i<data.length; i++){
                 var marker = L.marker(new L.LatLng(data[i].latitude, data[i].longitude));
-                marker.bindPopup('<b>'+data[i].name+'</b><br><br>'+data[i].address)
+                marker.bindPopup('<b>'+data[i].name+'</b><br><br>'+data[i].address+'<br><br>'+data[i].datasource);
                 markers.addLayer(marker);
             }
 
