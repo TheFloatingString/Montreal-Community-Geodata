@@ -25,6 +25,15 @@ set SSL=<lowercase boolean>
 npm clearDatabase
 ```
 
+### Populate Postgres Database
+With data from:
+* Anagraph
+* Montréal Données
+
+```
+node services/dbHelper.js
+```
+
 ### To Run
 
 ```
