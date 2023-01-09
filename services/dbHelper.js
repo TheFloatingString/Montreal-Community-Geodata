@@ -97,7 +97,7 @@ async function addAnagraphToDb(psqlPool) {
     console.log("completed running process to upload Anagraph data points.")
 }
 
-// addDonnesMontrealToDb(pool);
+addDonnesMontrealToDb(pool);
 addAnagraphToDb(pool);
 
 function addOrganization(
